@@ -98,11 +98,128 @@
         .plot-container:first-child .plot-description {
             margin-top: 75px;  /* Increased margin to match height of other plots */
         }
+        .gif-section {
+            margin-top: 40px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .gif-container {
+            display: flex;
+            flex-wrap: nowrap;  /* Prevent wrapping to new line */
+            justify-content: center;
+            gap: 30px;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 20px;
+            overflow-x: auto;  /* Allow horizontal scrolling if needed */
+        }
+        .gif-item {
+            flex: 0 0 350px;  /* Fixed width, no growing or shrinking */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .gif-item:hover {
+            transform: translateY(-5px);
+        }
+        .gif-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .gif-item h4 {
+            color: #333;
+            margin: 0 0 10px 0;
+            text-align: center;
+            font-size: 18px;
+        }
+        .gif-item p {
+            color: #666;
+            text-align: center;
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .author-info {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .author-info a {
+            color: #225ea8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .author-info a:hover {
+            color: #1d91c0;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .button-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #225ea8;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .button-link:hover {
+            background-color: #1d91c0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .button-link svg {
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>From Movement Primitive to Distance Field to Dynamical System</h1>
-    
+
+    <div class="author-info">
+        <p>Yiming Li and Sylvain Calinon</p>
+        <p>Idiap Research Institute and EPFL</p>
+    </div>
+
+    <div class="button-container">
+        <a href="https://arxiv.org/pdf/2504.09705" class="button-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Paper
+        </a>
+        <a href="https://github.com/mp-df-ds/mp-df-ds" class="button-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            Code
+        </a>
+    </div>
+
     <div class="container">
         <div class="plot-container">
             <h3>Quadratic Bezier Curve (with 2 segments)</h3>
@@ -1673,5 +1790,27 @@
         trajectory = computeTrajectory(streamPoint);
         updateAll();
     </script>
+
+    <div class="gif-section">
+        <h2>Applications to Real Robot</h2>
+        <div class="gif-container">
+            <div class="gif-item">
+                <h4>Disturbance Handling</h4>
+                <img src="disturbance.gif" alt="Distance Field Evolution">
+                <!-- <p>Visualization of how the distance field evolves as the curve is modified.</p> -->
+            </div>
+            <div class="gif-item">
+                <h4>Pick and Place</h4>
+                <img src="pick_and place.gif" alt="Dynamical System Flow">
+                <!-- <p>Demonstration of the dynamical system's flow for different initial conditions.</p> -->
+            </div>
+            <div class="gif-item">
+                <h4>Human-Robot Interaction</h4>
+                <img src="hri1x.gif" alt="Trajectory Convergence">
+                <img src="hrc.gif" alt="Trajectory Convergence">
+                <!-- <p>Multiple trajectories converging to the equilibrium point along the curve.</p> -->
+            </div>
+        </div>
+    </div>
 </body>
 </html>
